@@ -1,11 +1,11 @@
 from tkinter import *
 
-from utils import generate_matrix_ui, fill_matrix_ui
+from utils import generate_matrix_ui, fill_matrix_ui, save_calculation
 
 matrix = []
 
 
-def second_window():
+def second_window(weightedges, vertex):
     second_window = Tk()
 
     second_window.configure()
@@ -30,7 +30,8 @@ def second_window():
         command=lambda: generate_matrix_ui(
             vertex_count_input,
             second_window,
-            matrix
+            matrix,
+            vertex
         ),
         bg='#D3D3D3',
         font="15",
@@ -41,7 +42,7 @@ def second_window():
     edge_set_button = Button(
         second_window,
         text="Задати",
-        command=lambda: fill_matrix_ui(matrix),
+        command=lambda: fill_matrix_ui(matrix, edge_number_input, vertex_count_input, weightedges),
         bg='#bbbdc4',
         font="15",
         width=12
@@ -51,7 +52,7 @@ def second_window():
     save_matrix = Button(
         second_window,
         text="Зберегти матрицю",
-        command=lambda: save_calculation(textarea, "d"),
+        command=lambda: save_calculation(weightedges),
         bg='#bbbdc4',
         font="15",
     )

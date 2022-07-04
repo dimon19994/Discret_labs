@@ -1,6 +1,10 @@
 from tkinter import *
 
 from second_window import second_window
+from utils import show_graph, topological_sort
+
+weightedges = {}
+vertex = []
 
 
 def main_window():
@@ -28,7 +32,7 @@ def main_window():
     window_2 = Button(
         root,
         text="Задання граф ваг",
-        command=second_window,
+        command=lambda: second_window(weightedges, vertex),
         bg='#bbbdc4',
         font="20",
         width=27
@@ -38,7 +42,7 @@ def main_window():
     window_3 = Button(
         root,
         text="Відобразити граф",
-        command=lambda: third_window(set_a_input, set_b_input, set_c_input),
+        command=lambda: show_graph(weightedges, vertex),
         bg='#bbbdc4',
         font="20",
         width=27
@@ -49,12 +53,7 @@ def main_window():
     window_4 = Button(
         root,
         text="Порахувати найкоротший шлях",
-        command=lambda: fourth_window(
-            (universum_from_input, "Початкове значення універсуму", "number"),
-            (universum_to_input, "Кінцеве значення універсуму", "number"),
-            (set_a_input, "Значення множини А", "set"),
-            (set_c_input, "Значення множини C", "set"),
-        ),
+        command=lambda: topological_sort(pint_from_input, pint_to_input, weightedges, vertex),
         bg='#bbbdc4',
         font="20",
         width=27
