@@ -2,10 +2,13 @@ from tkinter import *
 
 from utils import generate_matrix_ui, fill_matrix_ui, save_calculation
 
-matrix = []
-
 
 def second_window(weightedges, vertex, tupedges):
+    weightedges.clear()
+    vertex.clear()
+    tupedges.clear()
+    matrix = []
+
     second_window = Tk()
 
     second_window.configure()
@@ -52,7 +55,7 @@ def second_window(weightedges, vertex, tupedges):
     save_matrix = Button(
         second_window,
         text="Зберегти матрицю",
-        command=lambda: save_calculation(weightedges),
+        command=lambda: save_calculation(weightedges, matrix, tupedges, vertex),
         bg='#bbbdc4',
         font="15",
     )

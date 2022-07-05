@@ -101,7 +101,18 @@ def fill_matrix_ui(all_entries, edge, vertex, weightedges, tupedges):
         all_entries[keey[1]][keey[0]].insert(END, 1)
 
 
-def save_calculation(weightedges):
+def save_calculation(weightedges, matrix, tupedges, vertex):
+    vertex.extend(list(range(len(matrix))))
+    for i in range(len(matrix)):
+        elemlist = list()
+        for j in range(len(matrix[i])):
+            if matrix[i][j].get() == "1":
+                tupedges.extend([(i, j), (j, i)])
+                elemlist.append(j)
+        weightedges.update({i: elemlist})
+
+
+
     f = open("matrix.txt", "w")
     f.write("\n".join([f"{i[0]} {' '.join(map(str, i[1]))}" for i in weightedges.items()]))
     f.close()
